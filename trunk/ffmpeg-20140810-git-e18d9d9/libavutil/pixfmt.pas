@@ -505,7 +505,7 @@ type
     AVCOL_PRI_FILM        = 8,
     AVCOL_PRI_BT2020      = 9, ///< ITU-R BT2020
     AVCOL_PRI_NB              ///< Not part of ABI
-  );
+  ); (* verified: mail@freehand.com.ua; 2014-08-26: + *)
 
 (**
  * Color Transfer Characteristic.
@@ -527,7 +527,7 @@ type
     AVCOL_TRC_BT2020_10    = 14, ///< ITU-R BT2020 for 10 bit system
     AVCOL_TRC_BT2020_12    = 15, ///< ITU-R BT2020 for 12 bit system
     AVCOL_TRC_NB                ///< Not part of ABI
-  );
+  ); (* verified: mail@freehand.com.ua; 2014-08-26: + *)
 
 (**
  * YUV colorspace type.
@@ -545,7 +545,7 @@ type
     AVCOL_SPC_BT2020_NCL  = 9,  ///< ITU-R BT2020 non-constant luminance system
     AVCOL_SPC_BT2020_CL   = 10, ///< ITU-R BT2020 constant luminance system
     AVCOL_SPC_NB               ///< Not part of ABI
-  );
+  ); (* verified: mail@freehand.com.ua; 2014-08-26: + *)
 
 const
   AVCOL_SPC_YCGCO = AVCOL_SPC_YCOCG;
@@ -559,7 +559,7 @@ type
     AVCOL_RANGE_MPEG        = 1, ///< the normal 219*2^(n-8) "MPEG" YUV ranges
     AVCOL_RANGE_JPEG        = 2, ///< the normal     2^n-1   "JPEG" YUV ranges
     AVCOL_RANGE_NB              ///< Not part of ABI
-  );
+  ); (* verified: mail@freehand.com.ua; 2014-08-26: + *)
 
 (**
  * Location of chroma samples.
@@ -577,7 +577,7 @@ type
     AVCHROMA_LOC_BOTTOMLEFT  = 5,
     AVCHROMA_LOC_BOTTOM      = 6,
     AVCHROMA_LOC_NB              ///< Not part of ABI
-  );
+  ); (* verified: mail@freehand.com.ua; 2014-08-26: + *)
 
 
 {$endif} (* AVUTIL_PIXFMT_H *)
