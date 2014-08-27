@@ -93,7 +93,7 @@ const
      * in ETSI TS 101 154 using AVActiveFormatDescription enum.
      *)
     AV_FRAME_DATA_AFD
-  );
+  ); (* verified: mail@freehand.com.ua; 2014-08-26: + *)
 
   TAVActiveFormatDescription = (
     AV_AFD_SAME         = 8,
@@ -103,7 +103,7 @@ const
     AV_AFD_4_3_SP_14_9  = 13,
     AV_AFD_16_9_SP_14_9 = 14,
     AV_AFD_SP_4_3       = 15
-  );
+  ); (* verified: mail@freehand.com.ua; 2014-08-26: + *)
 
   PPAVFrameSideData = ^PAVFrameSideData;
   PAVFrameSideData = ^TAVFrameSideData;
@@ -111,8 +111,8 @@ const
     type_ : TAVFrameSideDataType;
     data  : PByte;
     size  : integer;
-    metadata  : TAVDictionary;
-  end;
+    metadata  : PAVDictionary;
+  end; (* verified: mail@freehand.com.ua; 2014-08-26: + *)
 
 (**
  * This structure describes decoded (raw) audio or video data.
@@ -153,7 +153,7 @@ const
      * up to 16 bytes beyond the planes, if these filters are to be used,
      * then 16 extra bytes must be allocated.
      *)
-    data: array [0..AV_NUM_DATA_POINTERS - 1] of pbyte;
+    data: array [0..AV_NUM_DATA_POINTERS - 1] of PByte;
 
     (**
      * For video, size in bytes of each picture line.
@@ -318,7 +318,7 @@ const
      * motion_val[direction][x + y*mv_stride][0->mv_x, 1->mv_y];
      * @endcode
      *)
-    motion_val: array [0..1] of pointer; {deprecated}
+    motion_val: {array[0..1] of array[0..1] of PSmallInt;}array [0..1] of pointer; {deprecated}
 
     (**
      * macroblock type table
@@ -418,7 +418,7 @@ const
      * log2 of the size of the block which a single vector in motion_val represents:
      * (4->16x16, 3->8x8, 2-> 4x4, 1-> 2x2)
      *)
-    motion_subsample_log2: Pbyte; {deprecated}
+    motion_subsample_log2: Byte; {deprecated}
 {$ENDIF}
 
     (**
@@ -573,7 +573,7 @@ const
      * Not to be accessed directly from outside libavutil
      *)
     qp_table_buf: PAVBufferRef;
-  end;
+  end; (* verified: mail@freehand.com.ua; 2014-08-26: + *)
 
 (**
  * Accessors for some AVFrame fields.
@@ -623,9 +623,9 @@ function av_frame_get_qp_table(f: PAVFrame; stride: PInteger; type_: PInteger): 
 function av_frame_set_qp_table(f: PAVFrame; buf: PAVBufferRef; stride: integer; type_: integer): integer;
   cdecl; external LIB_AVUTIL;
 function av_frame_get_colorspace(frame: PAVFrame): TAVColorSpace;
-  cdecl; external LIB_AVUTIL;
+  cdecl; external LIB_AVUTIL; (* verified: mail@freehand.com.ua; 2014-08-27: + *)
 procedure av_frame_set_colorspace(frame: PAVFrame; val: TAVColorSpace);
-  cdecl; external LIB_AVUTIL;
+  cdecl; external LIB_AVUTIL; (* verified: mail@freehand.com.ua; 2014-08-27: + *)
 function av_frame_get_color_range(frame: PAVFrame): TAVColorRange;
   cdecl; external LIB_AVUTIL;
 procedure av_frame_set_color_range(frame: PAVFrame; val: TAVColorRange);
@@ -636,7 +636,7 @@ procedure av_frame_set_color_range(frame: PAVFrame; val: TAVColorRange);
  * @return a static string identifying the colorspace; can be NULL.
  *)
 function av_get_colorspace_name(val: TAVColorSpace): PAnsiChar;
-  cdecl; external LIB_AVUTIL;
+  cdecl; external LIB_AVUTIL; (* verified: mail@freehand.com.ua; 2014-08-27: + *)
 
 (**
  * Allocate an AVFrame and set its fields to default values.  The resulting
@@ -649,7 +649,7 @@ function av_get_colorspace_name(val: TAVColorSpace): PAnsiChar;
  * manually.
  *)
 function av_frame_alloc(): PAVFrame;
-  cdecl; external LIB_AVUTIL;
+  cdecl; external LIB_AVUTIL; (* verified: mail@freehand.com.ua; 2014-08-26: + *)
 
 (**
  * Free the frame and any dynamically allocated objects in it,
@@ -658,8 +658,8 @@ function av_frame_alloc(): PAVFrame;
  *
  * @param frame frame to be freed. The pointer will be set to NULL.
  *)
-procedure av_frame_free(frame: PPAVFrame);
-  cdecl; external LIB_AVUTIL;
+procedure av_frame_free(var frame: PAVFrame);
+  cdecl; external LIB_AVUTIL; (* verified: mail@freehand.com.ua; 2014-08-26: + *)
 
 (**
  * Setup a new reference to the data described by a given frame.
@@ -673,7 +673,7 @@ procedure av_frame_free(frame: PPAVFrame);
  * @return 0 on success, a negative AVERROR on error
  *)
 function av_frame_ref(dst: PAVFrame; src: PAVFrame): integer;
-  cdecl; external LIB_AVUTIL;
+  cdecl; external LIB_AVUTIL; (* verified: mail@freehand.com.ua; 2014-08-27: + *)
 
 (**
  * Create a new frame that references the same data as src.
@@ -683,13 +683,13 @@ function av_frame_ref(dst: PAVFrame; src: PAVFrame): integer;
  * @return newly created AVFrame on success, NULL on error.
  *)
 function av_frame_clone(src: PAVFrame): PAVFrame;
-  cdecl; external LIB_AVUTIL;
+  cdecl; external LIB_AVUTIL; (* verified: mail@freehand.com.ua; 2014-08-27: + *)
 
 (**
  * Unreference all the buffers referenced by frame and reset the frame fields.
  *)
 procedure av_frame_unref(frame: PAVFrame);
-  cdecl; external LIB_AVUTIL;
+  cdecl; external LIB_AVUTIL; (* verified: mail@freehand.com.ua; 2014-08-27: + *)
 
 (**
  * Move everythnig contained in src to dst and reset src.
@@ -715,7 +715,7 @@ procedure av_frame_move_ref(dst, src: PAVFrame);
  * @return 0 on success, a negative AVERROR on error.
  *)
 function av_frame_get_buffer(frame: PAVFrame; align: integer): integer;
-  cdecl; external LIB_AVUTIL;
+  cdecl; external LIB_AVUTIL; (* verified: mail@freehand.com.ua; 2014-08-27: + *)
 
 (**
  * Check if the frame data is writable.

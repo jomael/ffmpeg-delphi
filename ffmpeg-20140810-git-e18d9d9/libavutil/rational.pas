@@ -36,7 +36,7 @@ type
   TAVRational = record
     num: integer; ///< numerator
     den: integer; ///< denominator
-  end;
+  end; (* size: x64:8, x86:8; verified: mail@freehand.com.ua; 2014-08-26: + *)
 
 (**
  * Create a rational.

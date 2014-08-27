@@ -3842,8 +3842,8 @@ function avcodec_get_subtitle_rect_class(): PAVClass;
  * @param src source codec context
  * @return AVERROR() on error (e.g. memory allocation error), 0 on success
  *)
-function avcodec_copy_context(var dest: PAVCodecContext; src: PAVCodecContext): integer;
-    cdecl; external LIB_AVCODEC;
+function avcodec_copy_context(dest: PAVCodecContext; src: PAVCodecContext): integer;
+    cdecl; external LIB_AVCODEC; (* verified: mail@freehand.com.ua, 2014-08-26: + *)
 
 {$IF FF_API_AVFRAME_LAVC}
 (**
@@ -3967,7 +3967,7 @@ procedure av_destruct_packet(pkt: PAVPacket);
  * @param pkt packet
  *)
 procedure av_init_packet(pkt: PAVPacket);
-    cdecl; external LIB_AVCODEC;
+    cdecl; external LIB_AVCODEC; (* verified: mail@freehand.com.ua, 2014-08-26: + *)
 
 (**
  * Allocate the payload of a packet and initialize its fields with
@@ -3978,7 +3978,7 @@ procedure av_init_packet(pkt: PAVPacket);
  * @return 0 if OK, AVERROR_xxx otherwise
  *)
 function av_new_packet(pkt : PAVPacket; size: integer): integer;
-    cdecl; external LIB_AVCODEC;
+    cdecl; external LIB_AVCODEC; (* verified: mail@freehand.com.ua, 2014-08-26: + *)
 
 (**
  * Reduce packet size, correctly zeroing padding
@@ -4043,7 +4043,7 @@ function av_copy_packet_side_data(var dst : PAVPacket; src: PAVPacket): integer;
  * @param pkt packet to free
  *)
 procedure av_free_packet(pkt: PAVPacket);
-    cdecl; external LIB_AVCODEC;
+    cdecl; external LIB_AVCODEC;  (* verified: mail@freehand.com.ua, 2014-08-26: + *)
 
 (**
  * Allocate new information of a packet.

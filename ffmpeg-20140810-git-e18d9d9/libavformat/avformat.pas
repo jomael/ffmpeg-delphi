@@ -406,6 +406,7 @@ type
     filename    : PAnsiChar;
     buf         : PByte;      (**< Buffer must have AVPROBE_PADDING_SIZE of extra allocated bytes filled with zero. *)
     buf_size    : integer;    (**< Size of buf except extra allocated bytes *)
+    mime_type   : PByte;      (**< mime_type, when known. *)
   end;
 
 const
@@ -2080,7 +2081,7 @@ function  av_probe_input_buffer(pb: PAVIOContext; fmt:  PPAVInputFormat;
  * @note If you want to use custom IO, preallocate the format context and set its pb field.
  *)
 function avformat_open_input(var ps: PAVFormatContext; filename: PAnsiChar; fmt: PAVInputFormat; options: PPAVDictionary): integer;
-  cdecl; external LIB_AVFORMAT;
+  cdecl; external LIB_AVFORMAT; (* verified: mail@freehand.com.ua, 2014-08-26: + *)
 
 function av_demuxer_open(ic: PAVFormatContext): integer;
   cdecl; external LIB_AVFORMAT; deprecated;
@@ -2127,7 +2128,7 @@ function av_find_stream_info(ic: PAVFormatContext): integer;
  *       we do not waste time getting stuff the user does not need.
  *)
 function avformat_find_stream_info(ic: PAVFormatContext; options: PPAVDictionary): integer;
-  cdecl; external LIB_AVFORMAT;
+  cdecl; external LIB_AVFORMAT; (* verified: mail@freehand.com.ua, 2014-08-26: + *)
 
 (**
  * Find the programs which belong to a given stream.
@@ -2218,7 +2219,7 @@ function av_read_packet(s: PAVFormatContext; pkt: PAVPacket): integer;
  * @return 0 if OK, < 0 on error or end of file
  *)
 function av_read_frame(s: PAVFormatContext; pkt: PAVPacket): integer;
-  cdecl; external LIB_AVFORMAT;
+  cdecl; external LIB_AVFORMAT; (* verified: mail@freehand.com.ua, 2014-08-26: + *)
 
 (**
  * Seek to the keyframe at timestamp.
@@ -2695,7 +2696,7 @@ procedure av_dump_format(ic: PAVFormatContext;
                     index: integer;
                     url: PAnsiChar;
 					          is_output: integer);
-  cdecl; external LIB_AVFORMAT;
+  cdecl; external LIB_AVFORMAT;  (* verified: mail@freehand.com.ua, 2014-08-26: + *)
 
 (**
  * Return in 'buf' the path with '%d' replaced by a number.
