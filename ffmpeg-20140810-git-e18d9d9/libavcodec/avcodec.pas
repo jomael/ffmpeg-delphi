@@ -3851,7 +3851,7 @@ function avcodec_copy_context(dest: PAVCodecContext; src: PAVCodecContext): inte
  *)
 
 function avcodec_alloc_frame(): PAVFrame;
-    cdecl; external LIB_AVCODEC;
+    cdecl; external LIB_AVCODEC; (* verified: mail@freehand.com.ua, 2014-08-28: + *)
 
 (**
  * Set the fields of the given AVFrame to default values.
@@ -3917,7 +3917,7 @@ procedure avcodec_free_frame(var frame: PAVFrame);
  *      av_dict_set(), av_opt_find().
  *)
 function avcodec_open2(avctx: PAVCodecContext; codec: PAVCodec; options: PPAVDictionary): integer;
-    cdecl; external LIB_AVCODEC;
+    cdecl; external LIB_AVCODEC; (* verified: mail@freehand.com.ua, 2014-08-26: + *)
 
 (**
  * Close a given AVCodecContext and free all the data associated with it

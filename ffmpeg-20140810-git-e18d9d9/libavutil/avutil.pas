@@ -306,6 +306,8 @@ function av_get_picture_type_char(pict_type: TAVPictureType): PAnsiChar;
 
 {$INCLUDE samplefmt.pas}
 
+{$INCLUDE channel_layout.pas}
+
 {$INCLUDE opt.pas}
 
 {$INCLUDE buffer.pas}

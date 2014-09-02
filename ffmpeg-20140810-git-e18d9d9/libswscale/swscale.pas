@@ -48,7 +48,7 @@ type
   PQuadIntegerArray = ^TQuadIntegerArray;
   TIntegerArray = array[0..0] of integer;
   PIntegerArray = ^TIntegerArray;
-  TPByteArray = array[0..0] of Pbyte;
+  TPByteArray = array[0..0] of PByte;
   PPByteArray = ^TPByteArray;
   
 

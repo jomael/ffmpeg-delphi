@@ -581,7 +581,7 @@ const
  * they should not be accessed directly outside libavcodec.
  *)
 function  av_frame_get_best_effort_timestamp(frame: PAVFrame): int64;
-  cdecl; external LIB_AVCODEC;
+  cdecl; external LIB_AVUTIL; (* verified: mail@freehand.com.ua; 2014-09-01: + *)
 procedure av_frame_set_best_effort_timestamp(frame: PAVFrame; val: int64);
   cdecl; external LIB_AVUTIL;
 function  av_frame_get_pkt_duration(frame: PAVFrame): int64;

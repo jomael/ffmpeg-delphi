@@ -148,9 +148,10 @@ end;
 
 
 
-Procedure av_log_callback(ptr: pointer; level: integer; const fmt: PAnsiChar; const vl: va_list); stdcall;
+Procedure av_log_callback(ptr: pointer; level: integer; const fmt: PAnsiChar; const Args: array of const); stdcall;
 begin
-  writeln('AV_LOG: '+vsnprintf(fmt, vl));
+  writeln('AV_LOG: '+format(fmt, Args));
+ // writeln('AV_LOG: '+vsnprintf(fmt, vl));
 end;
 
 label
@@ -232,7 +233,7 @@ begin
     read:
       begin
         readln(msg);
-        av_vlog(nil, AV_LOG_ERROR, PAnsiChar(msg), vl);
+        av_vlog(nil, AV_LOG_ERROR, PAnsiChar(msg), []);
         goto read;
       end;
 

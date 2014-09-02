@@ -110,7 +110,7 @@ function av_rescale_q (a: int64; bq, cq: TAVRational): int64;
  *         INT64_MIN or INT64_MAX then a is passed through unchanged.
  *)
 function av_rescale_q_rnd(a: int64; bq, cq: TAVRational;
-                          enum: TAVRounding): int64;
+                          enum: integer): int64; (* verified: mail@freehand.com.ua, 2014-08-29: + *)
   cdecl; external LIB_AVUTIL;
 
 (**

@@ -214,7 +214,7 @@ void av_log(void *avcl, int level, const char *fmt, ...) av_printf_format(3, 4);
 
 type
   va_list = array[0..$FFFF] of pointer;
-  TAVLOGCallback = procedure (ptr: pointer; level: integer; const fmt: PAnsiChar; const vl: va_list) of object;
+  TAVLOGCallback = procedure (ptr: pointer; level: integer; const fmt: PAnsiChar; const Args: array of const) of object;
   PAVLOGCallback = ^TAVLOGCallback;
 
 (**
@@ -231,7 +231,7 @@ type
  * @param fmt The format string (printf-compatible) that specifies how
  *        subsequent arguments are converted to output.
  *)
-procedure av_log(avcl: pointer; level: integer; fmt: PAnsiChar);
+procedure av_log(avcl: pointer; level: integer; fmt: PAnsiChar; const Args: array of const);
   cdecl; external LIB_AVUTIL;
 
 (**
@@ -249,7 +249,7 @@ procedure av_log(avcl: pointer; level: integer; fmt: PAnsiChar);
  *        subsequent arguments are converted to output.
  * @param vl The arguments referenced by the format string.
  *)
-procedure av_vlog(avcl: pointer; level: integer; fmt: PAnsiChar; vl: va_list);
+procedure av_vlog(avcl: pointer; level: integer; fmt: PAnsiChar; const Args: array of const);
   cdecl; external LIB_AVUTIL;
 
 (**
@@ -298,7 +298,7 @@ procedure av_log_set_callback(avcl: Pointer);
  *        subsequent arguments are converted to output.
  * @param ap The arguments referenced by the format string.
  *)
-procedure av_log_default_callback(ptr: pointer; level: integer; const fmt: PAnsiChar; const vl: va_list);
+procedure av_log_default_callback(ptr: pointer; level: integer; const fmt: PAnsiChar; const Args: array of const);
   cdecl; external LIB_AVUTIL;
 
 (**
@@ -320,7 +320,7 @@ function av_default_get_category(ptr: pointer): TAVClassCategory;
  * @param print_prefix  used to store whether the prefix must be printed;
  *                      must point to a persistent integer initially set to 1
  *)
-procedure av_log_format_line(ptr: pointer; level: integer; fmt: PAnsiChar; vl: va_list;
+procedure av_log_format_line(ptr: pointer; level: integer; fmt: PAnsiChar; const Args: array of const;
                         line: PAnsiChar; line_size: integer; print_prefix: PInteger);
   cdecl; external LIB_AVUTIL;
 
