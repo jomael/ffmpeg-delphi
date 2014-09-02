@@ -72,7 +72,7 @@ const
  * detect the enabled cpu flags.
  *)
 function av_get_cpu_flags(): integer;
-  cdecl; external LIB_AVUTIL;
+  cdecl; external LIB_AVUTIL;(* verified: mail@freehand.com.ua, 2014-08-29: + *)
 
 (**
  * Disables cpu detection and forces the specified flags.

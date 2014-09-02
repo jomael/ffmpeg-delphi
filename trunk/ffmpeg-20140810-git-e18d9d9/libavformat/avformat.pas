@@ -1984,7 +1984,7 @@ function avformat_alloc_output_context(format: PAnsiChar;
  *)
 function avformat_alloc_output_context2(var ctx: PAVFormatContext; oformat: PAVOutputFormat;
                                    format_name: PAnsiChar; filename: PAnsiChar): integer;
-  cdecl; external LIB_AVFORMAT;
+  cdecl; external LIB_AVFORMAT; (* verified: mail@freehand.com.ua, 2014-08-28: + *)
 
 (**
  * @addtogroup lavf_decoding
@@ -2300,7 +2300,7 @@ procedure av_close_input_file(s: PAVFormatContext);
  * and set *s to NULL.
  *)
 procedure avformat_close_input(var s: PAVFormatContext);
-  cdecl; external LIB_AVFORMAT;
+  cdecl; external LIB_AVFORMAT; (* verified: mail@freehand.com.ua, 2014-09-01: + *)
 (**
  * @}
  *)
@@ -2426,7 +2426,7 @@ function av_write_frame(s: PAVFormatContext; pkt: PAVPacket): integer;
  * @see av_write_frame(), AVFormatContext.max_interleave_delta
  *)
 function av_interleaved_write_frame(s: PAVFormatContext; pkt: PAVPacket): integer;
-  cdecl; external LIB_AVFORMAT;
+  cdecl; external LIB_AVFORMAT; (* verified: mail@freehand.com.ua, 2014-08-29: + *)
 
 (**
  * Write a uncoded frame to an output media file.
@@ -2628,7 +2628,7 @@ function av_codec_get_tag2(tags: PPAVCodecTag; id: TAVCodecID;
   cdecl; external LIB_AVFORMAT;
 
 function av_find_default_stream_index(s: PAVFormatContext): integer;
-  cdecl; external LIB_AVFORMAT;
+  cdecl; external LIB_AVFORMAT; (* verified: mail@freehand.com.ua, 2014-09-01: + *)
 
 (**
  * Get the index for a specific timestamp.

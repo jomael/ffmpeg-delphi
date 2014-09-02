@@ -45,7 +45,7 @@ Type
     flags : cardinal;         ///< flags such as drop frame, +24 hours support, ...
     rate  : TAVRational;    ///< frame rate in rational form
     fps   : cardinal;         ///< frame per second; must be consistent with the rate field
-end;
+end; (* verified: mail@freehand.com.ua; 2014-09-01: + *)
 
 (**
  * Adjust frame number for NTSC drop frame time code.
@@ -119,7 +119,7 @@ Function av_timecode_make_mpeg_tc_string(buf: PAnsiChar; tc25bit: cardinal): PAn
  * @return            0 on success, AVERROR otherwise
  *)
 Function av_timecode_init(tc: PAVTimecode; rate: TAVRational; flags : integer; frame_start: integer; log_ctx : Pointer): integer;
-  cdecl; external LIB_AVUTIL;
+  cdecl; external LIB_AVUTIL; (* verified: mail@freehand.com.ua; 2014-00-01: + *)
 (**
  * Parse timecode representation (hh:mm:ss[:;.]ff).
  *

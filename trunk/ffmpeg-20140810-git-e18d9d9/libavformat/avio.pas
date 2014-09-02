@@ -437,7 +437,7 @@ const
  * AVERROR code in case of failure
  *)
 function avio_open(var s: PAVIOContext; url: PAnsiChar; flags: integer): integer;
-  cdecl; external LIB_AVFORMAT;
+  cdecl; external LIB_AVFORMAT; (* verified: mail@freehand.com.ua, 2014-08-29: + *)
 
 (**
  * Create and initialize a AVIOContext for accessing the
@@ -458,7 +458,7 @@ function avio_open(var s: PAVIOContext; url: PAnsiChar; flags: integer): integer
  *)
 function avio_open2(var s: PAVIOContext; url: PAnsiChar; flags: integer;
                     int_cb: PAVIOInterruptCB; options: PPAVDictionary): integer;
-  cdecl; external LIB_AVFORMAT;
+  cdecl; external LIB_AVFORMAT; (* verified: mail@freehand.com.ua, 2014-08-29: + *)
 
 (**
  * Close the resource accessed by the AVIOContext s and free it.
