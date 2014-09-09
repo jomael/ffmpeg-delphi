@@ -150,7 +150,7 @@ function av_get_bits_per_sample_fmt(sample_fmt: TAVSampleFormat): integer;
  * sample format
  *)
 function av_get_bytes_per_sample(sample_fmt: TAVSampleFormat): integer;
-  cdecl; external LIB_AVUTIL;
+  cdecl; external LIB_AVUTIL; (* verified: mail@freehand.com.ua, 2014-09-08: + *)
 
 (**
  * Check if the sample format is planar.
@@ -242,7 +242,7 @@ function av_samples_fill_arrays(var audio_data: PByte; linesize: PInteger;
 function av_samples_alloc(var audio_data: PByte; linesize: PInteger;
                           nb_channels: integer; nb_samples: integer;
 			                    sample_fmt: TAVSampleFormat; align: integer): integer;
-  cdecl; external LIB_AVUTIL;
+  cdecl; external LIB_AVUTIL; (* verified: mail@freehand.com.ua, 2014-09-08: + *)
 
 (**
  * Allocate a data pointers array, samples buffer for nb_samples
@@ -256,7 +256,7 @@ function av_samples_alloc(var audio_data: PByte; linesize: PInteger;
 function av_samples_alloc_array_and_samples(var audio_data: PByte; linesize: PInteger;
                                             nb_channels: integer; nb_samples: integer;
 			                                      sample_fmt: TAVSampleFormat; align: integer): integer;
-  cdecl; external LIB_AVUTIL;
+  cdecl; external LIB_AVUTIL; (* verified: mail@freehand.com.ua, 2014-09-08: + *)
 
 (**
  * Copy samples from src to dst.

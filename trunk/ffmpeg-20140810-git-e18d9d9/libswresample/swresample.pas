@@ -268,7 +268,7 @@ function swr_alloc_set_opts(s: PSwrContext;
                             out_ch_layout: int64; out_sample_fmt: TAVSampleFormat; out_sample_rate: integer;
                             in_ch_layout:  int64; in_sample_fmt:  TAVSampleFormat; in_sample_rate:  integer;
                             log_offset: integer; log_ctx: pointer): PSwrContext;
-  cdecl; external LIB_SWRESAMPLE;
+  cdecl; external LIB_SWRESAMPLE; (* verified: mail@freehand.com.ua, 2014-09-08: + *)
 
 (**
  * @}
@@ -283,7 +283,7 @@ function swr_alloc_set_opts(s: PSwrContext;
  * @param[in] s a pointer to a pointer to Swr context
  *)
 procedure swr_free(s: PPSwrContext);
-  cdecl; external LIB_SWRESAMPLE;
+  cdecl; external LIB_SWRESAMPLE; (* verified: mail@freehand.com.ua, 2014-09-08: + *)
 
 
 (**
@@ -324,9 +324,9 @@ procedure swr_close(s: PSwrContext);
  *
  * @return number of samples output per channel, negative value on error
  *)
-function swr_convert(s: PSwrContext; out_: PByte; out_count: integer;
+function swr_convert(s: PSwrContext; var out_: PByte; out_count: integer;
                     in_:  PByte; in_count: integer): integer;
-  cdecl; external LIB_SWRESAMPLE;
+  cdecl; external LIB_SWRESAMPLE; (* verified: mail@freehand.com.ua, 2014-09-08: + *)
 
 (**
  * Convert the next timestamp from input to output
@@ -459,7 +459,7 @@ function swr_inject_silence(s: PSwrContext; count: integer): integer;
  * @returns     the delay in 1 / @c base units.
  *)
 function swr_get_delay(s: PSwrContext; base: int64): int64;
-  cdecl; external LIB_SWRESAMPLE;
+  cdecl; external LIB_SWRESAMPLE; (* verified: mail@freehand.com.ua, 2014-09-08: + *)
 
 (**
  * @}

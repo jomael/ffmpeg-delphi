@@ -3916,7 +3916,7 @@ procedure avcodec_free_frame(var frame: PAVFrame);
  * @see avcodec_alloc_context3(), avcodec_find_decoder(), avcodec_find_encoder(),
  *      av_dict_set(), av_opt_find().
  *)
-function avcodec_open2(avctx: PAVCodecContext; codec: PAVCodec; options: PPAVDictionary): integer;
+function avcodec_open2(avctx: PAVCodecContext; codec: PAVCodec; var options: PAVDictionary): integer;
     cdecl; external LIB_AVCODEC; (* verified: mail@freehand.com.ua, 2014-08-26: + *)
 
 (**
