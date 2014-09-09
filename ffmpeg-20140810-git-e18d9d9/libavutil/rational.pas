@@ -59,7 +59,7 @@ function av_cmp_q(a: TAVRational; b: TAVRational): integer; inline;
  * @param a rational to convert
  * @return (double) a
  *)
-function av_q2d(a: TAVRational): double; inline;
+function av_q2d(a: TAVRational): double; inline; (* verified: mail@freehand.com.ua, 2014-08-29: + *)
 
 (**
  * Reduce a fraction.

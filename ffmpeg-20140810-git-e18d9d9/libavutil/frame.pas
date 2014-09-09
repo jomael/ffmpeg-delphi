@@ -190,7 +190,7 @@ const
      * encoding: set by user
      * decoding: set by AVCodecContext.get_buffer()
      *)
-    extended_data: ^pbyte;
+    extended_data: Pointer;
 
     (**
      * width and height of the video frame
@@ -757,7 +757,7 @@ function av_frame_make_writable(frame: PAVFrame): integer;
  *
  * @return >= 0 on success, a negative AVERROR on error.
  *)
-function av_frame_copy(var dst : PAVFrame; const src: PAVFrame): integer;
+function av_frame_copy(dst : PAVFrame; const src: PAVFrame): integer;
   cdecl; external LIB_AVUTIL;
 
 (**
@@ -768,8 +768,8 @@ function av_frame_copy(var dst : PAVFrame; const src: PAVFrame): integer;
  * aspect ratio (for video), but not width/height or channel layout.
  * Side data is also copied.
  *)
-function av_frame_copy_props(var dst: PAVFrame; const src:PAVFrame): integer;
-  cdecl; external LIB_AVUTIL;
+function av_frame_copy_props(dst: PAVFrame; const src:PAVFrame): integer;
+  cdecl; external LIB_AVUTIL; (* verified: mail@freehand.com.ua; 2014-09-02: + *)
 
 (**
  * Get the buffer reference a given data plane is stored in.

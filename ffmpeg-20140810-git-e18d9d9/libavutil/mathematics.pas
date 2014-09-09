@@ -85,7 +85,7 @@ function av_gcd(a: int64; b: int64): int64;
  * A simple a*b/c isn't possible as it can overflow.
  *)
 function av_rescale (a, b, c: int64): int64;
-  cdecl; external LIB_AVUTIL;
+  cdecl; external LIB_AVUTIL; (* verified: mail@freehand.com.ua, 2014-09-05: + *)
 
 (**
  * Rescale a 64-bit integer with specified rounding.

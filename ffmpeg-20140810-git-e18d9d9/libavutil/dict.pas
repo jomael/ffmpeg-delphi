@@ -127,8 +127,8 @@ function av_dict_count(m: PAVDictionary): integer;
  *        Passing a NULL value will cause an existing entry to be deleted.
  * @return >= 0 on success otherwise an error code <0
  *)
-function av_dict_set(var pm: PAVDictionary; key: PAnsiChar; value: PAnsiChar; flags: integer): integer;
-  cdecl; external LIB_AVUTIL;
+function av_dict_set(pm: PPAVDictionary; key: PAnsiChar; value: PAnsiChar; flags: integer): integer;
+  cdecl; external LIB_AVUTIL; (* verified: mail@freehand.com.ua, 2014-09-05: + *)
 
 (**
  * Parse the key/value pairs list and add the parsed entries to a dictionary.
@@ -159,8 +159,8 @@ function av_dict_parse_string(var pm: PAVDictionary; str: PAnsiChar;
  * @param flags flags to use when setting entries in *dst
  * @note metadata is read using the AV_DICT_IGNORE_SUFFIX flag
  *)
-procedure av_dict_copy(var dst: PAVDictionary; src: PAVDictionary; flags: integer);
-  cdecl; external LIB_AVUTIL;
+procedure av_dict_copy(dst: PPAVDictionary; src: PAVDictionary; flags: integer);
+  cdecl; external LIB_AVUTIL; (* verified: mail@freehand.com.ua, 2014-09-05: + *)
 
 (**
  * Free all the memory allocated for an AVDictionary struct

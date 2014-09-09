@@ -2267,7 +2267,7 @@ function av_seek_frame(s: PAVFormatContext; stream_index: integer; timestamp: in
  *       ABI compatibility yet!
  *)
 function avformat_seek_file(s: PAVFormatContext; stream_index: integer; min_ts: int64; ts: int64; max_ts: int64; flags: integer): integer;
-  cdecl; external LIB_AVFORMAT;
+  cdecl; external LIB_AVFORMAT;  (* verified: mail@freehand.com.ua, 2014-09-05: + *)
 
 (**
  * Start playing a network-based stream (e.g. RTSP stream) at the
