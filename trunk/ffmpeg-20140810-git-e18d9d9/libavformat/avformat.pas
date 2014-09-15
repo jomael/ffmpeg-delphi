@@ -1754,7 +1754,7 @@ type
 
 
 function av_stream_get_r_frame_rate(s: PAVStream): TAVRational;
-  cdecl; external LIB_AVFORMAT;
+  cdecl; external LIB_AVFORMAT; (* verified: mail@freehand.com.ua, 2014-09-10: + *)
 procedure av_stream_set_r_frame_rate(s: PAVStream; r: TAVRational);
   cdecl; external LIB_AVFORMAT;
 function av_stream_get_parser(s: PAVStream): PAVCodecParserContext;

@@ -3916,7 +3916,7 @@ procedure avcodec_free_frame(var frame: PAVFrame);
  * @see avcodec_alloc_context3(), avcodec_find_decoder(), avcodec_find_encoder(),
  *      av_dict_set(), av_opt_find().
  *)
-function avcodec_open2(avctx: PAVCodecContext; codec: PAVCodec; var options: PAVDictionary): integer;
+function avcodec_open2(avctx: PAVCodecContext; codec: PAVCodec; options: PPAVDictionary): integer;
     cdecl; external LIB_AVCODEC; (* verified: mail@freehand.com.ua, 2014-08-26: + *)
 
 (**
@@ -3929,7 +3929,7 @@ function avcodec_open2(avctx: PAVCodecContext; codec: PAVCodec; var options: PAV
  * do nothing.
  *)
 function avcodec_close(avctx: PAVCodecContext): integer;
-    cdecl; external LIB_AVCODEC;
+    cdecl; external LIB_AVCODEC; (* verified: mail@freehand.com.ua, 2014-09-15: + *)
 
 (**
  * Free all allocated data in the given subtitle struct.
@@ -4452,7 +4452,7 @@ function avcodec_decode_audio4(avctx : PAVCodecContext; frame : PAVFrame;
 function avcodec_decode_video2(avctx: PAVCodecContext; picture: PAVFrame;
                          var got_picture_ptr: Integer;
                          avpkt : PAVPacket): integer;
-    cdecl; external LIB_AVCODEC;
+    cdecl; external LIB_AVCODEC; (* verified: mail@freehand.com.ua, 2014-09-15: + *)
 
 (**
  * Decode a subtitle message.

@@ -779,7 +779,7 @@ function av_opt_set_double(obj: pointer; name: PAnsiChar; val: double; search_fl
   cdecl; external LIB_AVUTIL;
 function av_opt_set_q(obj: pointer; name: PAnsiChar; val: TAVRational; search_flags: integer): integer;
   cdecl; external LIB_AVUTIL;
-function av_opt_set_bin(obj: pointer; name: PAnsiChar; val: Byte; search_flags: integer): integer;
+function av_opt_set_bin(obj: pointer; name: PAnsiChar; val: PByte; size: integer; search_flags: integer): integer;
   cdecl; external LIB_AVUTIL;
 function av_opt_set_image_size(obj: pointer; name: PAnsiChar; w, h, search_flags: integer): integer;
   cdecl; external LIB_AVUTIL;
