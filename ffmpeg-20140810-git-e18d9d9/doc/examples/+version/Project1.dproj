@@ -127,6 +127,7 @@
         <DCCReference Include="..\..\..\libavutil\avutil.pas"/>
         <DCCReference Include="..\..\..\libavcodec\avcodec.pas"/>
         <DCCReference Include="..\..\..\libavformat\avformat.pas"/>
+        <DCCReference Include="..\..\..\libavfilter\avfilter.pas"/>
         <DCCReference Include="..\..\..\libswresample\swresample.pas"/>
         <DCCReference Include="..\..\..\libpostproc\postprocess.pas"/>
         <DCCReference Include="..\..\..\libavdevice\avdevice.pas"/>

@@ -231,7 +231,7 @@ type
  * @param fmt The format string (printf-compatible) that specifies how
  *        subsequent arguments are converted to output.
  *)
-procedure av_log(avcl: pointer; level: integer; fmt: PAnsiChar; const Args: array of const);
+procedure av_log(avcl: pointer; level: integer; fmt: PAnsiChar);
   cdecl; external LIB_AVUTIL;
 
 (**

@@ -85,7 +85,7 @@ Function av_timecode_get_smpte_from_framenum(const tc : PAVTimecode; framenum : 
  * @note The frame number is relative to tc->start.
  *)
 Function av_timecode_make_string(tc: PAVTimecode; buf : PAnsiChar; framenum: integer): PAnsiChar;
-   cdecl; external LIB_AVUTIL;
+   cdecl; external LIB_AVUTIL; (* verified: mail@freehand.com.ua; 2014-09-09: + *)
 (**
  * Get the timecode string from the SMPTE timecode format.
  *
@@ -119,7 +119,7 @@ Function av_timecode_make_mpeg_tc_string(buf: PAnsiChar; tc25bit: cardinal): PAn
  * @return            0 on success, AVERROR otherwise
  *)
 Function av_timecode_init(tc: PAVTimecode; rate: TAVRational; flags : integer; frame_start: integer; log_ctx : Pointer): integer;
-  cdecl; external LIB_AVUTIL; (* verified: mail@freehand.com.ua; 2014-00-01: + *)
+  cdecl; external LIB_AVUTIL; (* verified: mail@freehand.com.ua; 2014-09-01: + *)
 (**
  * Parse timecode representation (hh:mm:ss[:;.]ff).
  *
@@ -138,6 +138,6 @@ Function av_timecode_init_from_string(tc: PAVTimecode; rate: TAVRational; str: P
  * @return 0 if supported, <0 otherwise
  *)
 Function av_timecode_check_frame_rate(rate: TAVRational): integer;
-  cdecl; external LIB_AVUTIL;
+  cdecl; external LIB_AVUTIL; (* verified: mail@freehand.com.ua; 2014-09-09: + *)
 
 {$endif} (* AVUTIL_TIMECODE_H *)

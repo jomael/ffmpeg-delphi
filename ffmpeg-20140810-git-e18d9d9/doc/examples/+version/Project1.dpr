@@ -9,6 +9,7 @@ uses
   avutil in '../../../libavutil/avutil.pas',
   avcodec in '../../../libavcodec/avcodec.pas',
   avformat in '../../../libavformat/avformat.pas',
+  avfilter in '../../../libavfilter/avfilter.pas',
   swresample in '../../../libswresample/swresample.pas',
   postprocess in '../../../libpostproc/postprocess.pas',
   avdevice in '../../../libavdevice/avdevice.pas',
@@ -53,6 +54,12 @@ begin
     MINOR:= VERSION shr 8 and $ff;
     MICRO:= VERSION and $ff;
     writeln(format('LIB_AVFORMAT    %s.dll   %s', [LIB_AVFORMAT, AV_VERSION(MAJOR, MINOR, MICRO)]));
+
+    VERSION:=avfilter_version();
+    MAJOR:= VERSION shr 16;
+    MINOR:= VERSION shr 8 and $ff;
+    MICRO:= VERSION and $ff;
+    writeln(format('LIB_AVFILTER:    %s.dll   %s', [LIB_AVFILTER, AV_VERSION(MAJOR, MINOR, MICRO)]));
 
     VERSION:=avdevice_version();
     MAJOR:= VERSION shr 16;
