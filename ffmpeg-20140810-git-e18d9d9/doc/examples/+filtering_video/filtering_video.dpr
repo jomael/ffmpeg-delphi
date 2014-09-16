@@ -21,6 +21,11 @@
  * THE SOFTWARE.
  *)
 
+ (**
+ * Conversion to Pascal Copyright 2014 (c) Oleksandr Nazaruk <mail@freehand.com.ua>
+ *
+ *)
+
 (**
  * @file
  * API example for decoding and filtering
@@ -59,8 +64,6 @@ var
   buffersrc_ctx       : PAVFilterContext = nil;
   filter_graph        : PAVFilterGraph = nil;
   video_stream_index  : integer = -1;
-  ast_pts             : int64 = AV_NOPTS_VALUE;
-
 
 function open_input_file(filename: PAnsiChar): integer;
 var
@@ -127,6 +130,7 @@ var
   buffersink  : PAVFilter;
   fDrawtext   : PAVFilter;
   fOverlay    : PAVFilter;
+  fVFlip      : PAVFilter;
   outputs     : PAVFilterInOut;
   inputs      : PAVFilterInOut;
   pix_fmts    : array[0..1] of TAVPixelFormat;
@@ -137,6 +141,9 @@ begin
   Buffersink := avfilter_get_by_name('buffersink');
   fDrawtext := avfilter_get_by_name('drawtext');
   fOverlay := avfilter_get_by_name('overlay');
+  fVFlip := avfilter_get_by_name('vflip');
+  //smtebars
+
 
   outputs := avfilter_inout_alloc();
   inputs  := avfilter_inout_alloc();

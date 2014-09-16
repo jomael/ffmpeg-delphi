@@ -1060,7 +1060,7 @@ function avfilter_pad_get_type(const pads: PAVFilterPad; pad_idx: integer): TAVM
  *)
 function avfilter_link(src: PAVFilterContext; srcpad: cardinal;
                  dst: PAVFilterContext; dstpad: cardinal) : integer;
-    cdecl; external LIB_AVFILTER;
+    cdecl; external LIB_AVFILTER; (* verified: mail@freehand.com.ua, 2014-09-16: + *)
 
 (**
  * Free the link in *link, and set its pointer to NULL.
@@ -1261,7 +1261,7 @@ function avfilter_init_filter(filter: PAVFilterContext; args: PAnsiChar; opaque:
  * @return 0 on success, a negative AVERROR on failure
  *)
 function avfilter_init_str(ctx: PAVFilterContext; args: PAnsiChar) : integer;
-    cdecl; external LIB_AVFILTER;
+    cdecl; external LIB_AVFILTER; (* verified: mail@freehand.com.ua, 2014-09-16: + *)
 
 (**
  * Initialize a filter with the supplied dictionary of options.
@@ -1284,7 +1284,7 @@ function avfilter_init_str(ctx: PAVFilterContext; args: PAnsiChar) : integer;
  * continue as usual.
  *)
 function avfilter_init_dict(ctx: PAVFilterContext; options: PPAVDictionary): integer;
-    cdecl; external LIB_AVFILTER;
+    cdecl; external LIB_AVFILTER; (* verified: mail@freehand.com.ua, 2014-09-16: + *)
 
 (**
  * Free a filter context. This will also remove the filter from its
@@ -1362,7 +1362,7 @@ function avfilter_graph_alloc(): PAVFilterGraph;
 function avfilter_graph_alloc_filter(graph : PAVFilterGraph;
                                       const filter : PAVFilter;
                                       name : PAnsiChar): PAVFilterContext;
-    cdecl; external LIB_AVFILTER;
+    cdecl; external LIB_AVFILTER; (* verified: mail@freehand.com.ua, 2014-09-16: + *)
 
 (**
  * Get a filter instance identified by instance name from graph.
