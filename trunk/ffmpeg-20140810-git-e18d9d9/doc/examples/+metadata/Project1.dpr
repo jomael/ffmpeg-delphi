@@ -61,15 +61,15 @@ begin
     end;
 
     // "create" an empty dictionary
-    av_dict_set(fmt_ctx.metadata, 'test1', 'value', 0);      // add an entry
+    av_dict_set(fmt_ctx^.metadata, 'test1', 'value', 0);      // add an entry
     k := av_strdup('test2');            // if your strings are already allocated,
     v := av_strdup('value');          // you can avoid copying them like this
-    av_dict_set(fmt_ctx.metadata, k, v, AV_DICT_DONT_STRDUP_KEY or AV_DICT_DONT_STRDUP_VAL);
+    av_dict_set(fmt_ctx^.metadata, k, v, AV_DICT_DONT_STRDUP_KEY or AV_DICT_DONT_STRDUP_VAL);
 
     writeln('Metadata:');
     repeat
-      tag := av_dict_get(fmt_ctx.metadata, '', tag, AV_DICT_IGNORE_SUFFIX);
-      if assigned(tag) then  writeln(format('   %s=%s', [tag.key, tag.value]));
+      tag := av_dict_get(fmt_ctx^.metadata, '', tag, AV_DICT_IGNORE_SUFFIX);
+      if assigned(tag) then  writeln(format('   %s=%s', [tag^.key, tag^.value]));
     until not assigned(tag);
 
     avformat_close_input(fmt_ctx);

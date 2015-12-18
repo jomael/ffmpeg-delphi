@@ -127,7 +127,7 @@ function av_dict_count(m: PAVDictionary): integer;
  *        Passing a NULL value will cause an existing entry to be deleted.
  * @return >= 0 on success otherwise an error code <0
  *)
-function av_dict_set(pm: PPAVDictionary; key: PAnsiChar; value: PAnsiChar; flags: integer): integer;
+function av_dict_set(var pm: PAVDictionary; key: PAnsiChar; value: PAnsiChar; flags: integer): integer;
   cdecl; external LIB_AVUTIL; (* verified: mail@freehand.com.ua, 2014-09-05: + *)
 
 (**

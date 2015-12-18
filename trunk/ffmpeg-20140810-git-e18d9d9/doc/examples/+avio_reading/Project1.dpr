@@ -18,8 +18,8 @@ uses
 {$MINENUMSIZE 4}
 
 type
-  pBuffer_data = ^buffer_data;
-  buffer_data = record
+  PBuffer_data = ^TBuffer_data;
+  TBuffer_data = record
     ptr   : Pointer;
     size  : integer; ///< size left in the buffer
   end;
@@ -53,7 +53,7 @@ var
   avio_ctx_buffer_size  : integer;
   input_filename        : PAnsiChar;
   ret                   : integer;
-  bd                    : buffer_data;
+  bd                    : TBuffer_data;
 begin
   try
     fmt_ctx := nil;
@@ -64,7 +64,7 @@ begin
     avio_ctx_buffer_size := 4096;
     input_filename := nil;
     ret := 0;
-    fillchar(bd, sizeof(buffer_data), #0);
+    fillchar(bd, sizeof(TBuffer_data), #0);
 
     if (ParamCount <> 1) then
     begin
@@ -108,7 +108,7 @@ begin
       ret := ENOMEM;
       goto finish;
     end;
-    fmt_ctx.pb := avio_ctx;
+    fmt_ctx^.pb := avio_ctx;
 
     ret := avformat_open_input(fmt_ctx, nil, nil, nil);
     if (ret < 0) then
@@ -132,7 +132,7 @@ begin
       (* note: the internal buffer could have changed, and be != avio_ctx_buffer *)
       if assigned(avio_ctx) then
       begin
-        av_freep(@avio_ctx.buffer);
+        av_freep(@avio_ctx^.buffer);
         av_freep(@avio_ctx);
       end;
       av_file_unmap(buffer, buffer_size);

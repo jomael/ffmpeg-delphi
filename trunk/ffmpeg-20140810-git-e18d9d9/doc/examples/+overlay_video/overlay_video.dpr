@@ -181,7 +181,7 @@ begin
   if not assigned(tMovieContext) then
     exit(-1);
 
-  av_dict_set(@tOptionsDict, 'filename', PAnsiChar(ansistring(watermark_image)), 0);
+  av_dict_set(tOptionsDict, 'filename', PAnsiChar(ansistring(watermark_image)), 0);
   tError := avfilter_init_dict(tMovieContext, @tOptionsDict);
   av_dict_free(tOptionsDict);
   if tError < 0 then
@@ -213,12 +213,12 @@ begin
   if not assigned(tOverlayContext) then
     exit(-1);
 
-  av_dict_set(@tOptionsDict, 'x', '100', 0);
-  av_dict_set(@tOptionsDict, 'y', '50', 0);
-  av_dict_set(@tOptionsDict, 'main_w', '120', 0);
-  av_dict_set(@tOptionsDict, 'main_h', '140', 0);
-  av_dict_set(@tOptionsDict, 'overlay_w', '320', 0);
-  av_dict_set(@tOptionsDict, 'overlay_h', '240', 0);
+  av_dict_set(tOptionsDict, 'x', '100', 0);
+  av_dict_set(tOptionsDict, 'y', '50', 0);
+  av_dict_set(tOptionsDict, 'main_w', '120', 0);
+  av_dict_set(tOptionsDict, 'main_h', '140', 0);
+  av_dict_set(tOptionsDict, 'overlay_w', '320', 0);
+  av_dict_set(tOptionsDict, 'overlay_h', '240', 0);
   tError := avfilter_init_dict(tOverlayContext, @tOptionsDict);
   av_dict_free(tOptionsDict);
   if tError < 0 then
@@ -234,7 +234,7 @@ begin
   if not assigned(tFormatContext) then
     exit(-1);
 
-  av_dict_set(@tOptionsDict, 'pix_fmts', 'bgra', 0);
+  av_dict_set(tOptionsDict, 'pix_fmts', 'bgra', 0);
   tError := avfilter_init_dict(tFormatContext, @tOptionsDict);
   av_dict_free(tOptionsDict);
   if tError < 0 then
