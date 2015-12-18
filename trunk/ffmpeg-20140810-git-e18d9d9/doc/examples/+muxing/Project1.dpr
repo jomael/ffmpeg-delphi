@@ -86,9 +86,9 @@ begin
     begin
       time_base := @streams^.time_base;
       writeln(format('pts:%s pts_time:%s dts:%s dts_time:%s duration:%s duration_time:%s stream_index:%d',
-        [av_ts2str(pkt^.pts), av_ts2timestr(pkt^.pts, time_base),
-        av_ts2str(pkt^.dts), av_ts2timestr(pkt^.dts, time_base),
-        av_ts2str(pkt^.duration), av_ts2timestr(pkt^.duration, time_base),
+        [string(av_ts2str(pkt^.pts)), string(av_ts2timestr(pkt^.pts, time_base)),
+        string(av_ts2str(pkt^.dts)), string(av_ts2timestr(pkt^.dts, time_base)),
+        string(av_ts2str(pkt^.duration)), string(av_ts2timestr(pkt^.duration, time_base)),
         pkt^.stream_index]));
       break;
     end;
@@ -142,28 +142,35 @@ begin
 
       c^.bit_rate    := 64000;
       c^.sample_rate := 44100;
-      if codec^.supported_samplerates^ > 0 then
+      if assigned(codec^.supported_samplerates) then
       begin
-        c^.sample_rate := codec.supported_samplerates^;
-        (*for (i = 0; (*codec)->supported_samplerates[i]; i++)
+        c^.sample_rate := codec^.supported_samplerates^;
+        (*
+        for (i = 0; (*codec)->supported_samplerates[i]; i++)
         begin
           if ((*codec)->supported_samplerates[i] == 44100) then
-                    c->sample_rate = 44100;
+            c^.sample_rate := 44100;
         end;
         *)
-        c^.channels       := av_get_channel_layout_nb_channels(c^.channel_layout);
-        c^.channel_layout := AV_CH_LAYOUT_STEREO;
-        (*if ((*codec)->channel_layouts) {
-            c->channel_layout = (*codec)->channel_layouts[0];
-            for (i = 0; (*codec)->channel_layouts[i]; i++) {
-                if ((*codec)->channel_layouts[i] == AV_CH_LAYOUT_STEREO)
-                    c->channel_layout = AV_CH_LAYOUT_STEREO;
-            }
-        } *)
-        c^.channels := av_get_channel_layout_nb_channels(c^.channel_layout);
-        ost^.st^.time_base.num := 1;
-        ost^.st^.time_base.den := c^.sample_rate;
       end;
+      c^.channels       := av_get_channel_layout_nb_channels(c^.channel_layout);
+      c^.channel_layout := AV_CH_LAYOUT_STEREO;
+      if assigned(codec^.channel_layouts) then
+      begin
+        c^.channel_layout := codec^.channel_layouts^;
+        (*
+        for (i = 0; (*codec)->channel_layouts[i]; i++)
+        begin
+          if ((*codec)->channel_layouts[i] == AV_CH_LAYOUT_STEREO) then
+            c^.channel_layout := AV_CH_LAYOUT_STEREO;
+        end;
+        }
+        *)
+      end;
+      c^.channels := av_get_channel_layout_nb_channels(c^.channel_layout);
+      ost^.st^.time_base.num := 1;
+      ost^.st^.time_base.den := c^.sample_rate;
+
     end;
     AVMEDIA_TYPE_VIDEO:
     begin
@@ -310,16 +317,13 @@ var
   j, i, v : integer;
   q       : PSmallInt;
   frame   : PAVFrame;
-  tb_b    : TAVRational;
 begin
   result := nil;
   frame := ost^.tmp_frame;
   q := PSmallInt(frame.data[0]);
 
   (* check if we want to generate more frames *)
-  tb_b.num := 1;
-  tb_b.den := 1;
-  if (av_compare_ts(ost^.next_pts, ost^.st^.codec^.time_base, STREAM_DURATION, tb_b) >= 0) then
+  if (av_compare_ts(ost^.next_pts, ost^.st^.codec^.time_base, STREAM_DURATION, av_make_q(1,1)) >= 0) then
     exit;
 
   for j := 0 to frame^.nb_samples-1 do
@@ -327,8 +331,8 @@ begin
     v := round(sin(ost^.t) * 10000);
     for i := 0 to ost^.st^.codec^.channels-1 do
     begin
-      PSmallInt(q)^ := v;
-      inc(PSmallInt(q),1);
+      q^ := v;
+      inc(q);
     end;
     ost^.t     := ost^.t + ost^.tincr;
     ost^.tincr := ost^.tincr + ost^.tincr2;
@@ -351,7 +355,6 @@ var
   ret             : integer;
   got_packet      : integer;
   dst_nb_samples  : integer;
-  bq              : TAVRational;
 begin
   result := false;
   fillchar(pkt, sizeof(TAVPacket), #0);
@@ -386,9 +389,7 @@ begin
     end;
     frame := ost^.frame;
 
-    bq.num := 1;
-    bq.den := c^.sample_rate;
-    frame^.pts := av_rescale_q(ost^.samples_count, bq, c^.time_base);
+    frame^.pts := av_rescale_q(ost^.samples_count, av_make_q(1, c^.sample_rate), c^.time_base);
     inc(ost^.samples_count, dst_nb_samples);
   end;
 
@@ -518,15 +519,12 @@ end;
 function get_video_frame(ost: POutputStream): PAVFrame;
 var
   c     : PAVCodecContext;
-  tb_b  : TAVRational;
 begin
   result := nil;
   c := ost^.st^.codec;
 
   (* check if we want to generate more frames *)
-  tb_b.num := 1;
-  tb_b.den := 1;
-  if (av_compare_ts(ost^.next_pts, ost^.st^.codec^.time_base, STREAM_DURATION, tb_b) >= 0) then
+  if (av_compare_ts(ost^.next_pts, ost^.st^.codec^.time_base, STREAM_DURATION, av_make_q(1, 1)) >= 0) then
     exit;
 
   if (c^.pix_fmt <> AV_PIX_FMT_YUV420P) then

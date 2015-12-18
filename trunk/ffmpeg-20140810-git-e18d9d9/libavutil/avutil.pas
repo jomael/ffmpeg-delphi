@@ -518,7 +518,7 @@ begin
   if (ts = AV_NOPTS_VALUE) then
     StrLCopy(buf, 'NOPTS', AV_TS_MAX_STRING_SIZE)
   else
-    StrLCopy(buf, PAnsiChar(format('%d', [ts])), AV_TS_MAX_STRING_SIZE);
+    StrLCopy(buf, PAnsiChar(ansistring(format('%d', [ts]))), AV_TS_MAX_STRING_SIZE);
   result := buf;
 end;
 
@@ -547,8 +547,8 @@ begin
   if (ts = AV_NOPTS_VALUE) then
     StrLCopy(buf, 'NOPTS'+#0, AV_TS_MAX_STRING_SIZE)
   else
-    StrLCopy(buf, PAnsiChar(format('%.6g', [av_q2d(tb^) * ts])), AV_TS_MAX_STRING_SIZE);
-  result:=buf;
+    StrLCopy(buf, PAnsiChar(ansistring(format('%.6g', [av_q2d(tb^) * ts]))), AV_TS_MAX_STRING_SIZE);
+  result := buf;
 end;
 
 (**
@@ -560,7 +560,7 @@ Function av_ts2timestr(ts: int64; tb: PAVRational): PAnsiChar;
 var
 	param : array[0..AV_TS_MAX_STRING_SIZE-1] of ansichar;
 begin
- result:=av_ts_make_time_string(param, ts, tb);
+ result := av_ts_make_time_string(param, ts, tb);
 end;
 
 
