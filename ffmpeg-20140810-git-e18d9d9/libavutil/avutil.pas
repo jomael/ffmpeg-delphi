@@ -300,6 +300,8 @@ function av_get_picture_type_char(pict_type: TAVPictureType): PAnsiChar;
 
 {$INCLUDE error.pas}
 
+{$INCLUDE file.pas}
+
 {$INCLUDE mathematics.pas}
 
 {$INCLUDE mem.pas}
@@ -418,6 +420,12 @@ begin
   result.den:=den;
 end;
 
+function FFMIN(a,b : integer): integer;
+begin
+  if (a > b) then result := b
+  else result := a;
+end;
+
 (* libavutil/rational.h *)
 
 function av_cmp_q (a: TAVRational; b: TAVRational): integer; inline;
@@ -511,7 +519,7 @@ begin
     StrLCopy(buf, 'NOPTS', AV_TS_MAX_STRING_SIZE)
   else
     StrLCopy(buf, PAnsiChar(format('%d', [ts])), AV_TS_MAX_STRING_SIZE);
-  result:=buf;
+  result := buf;
 end;
 
 {**
@@ -522,7 +530,7 @@ Function av_ts2str(ts: int64): PAnsiChar;
 var
 	param : array[0..AV_TS_MAX_STRING_SIZE-1] of ansichar;
 begin
- result:=av_ts_make_string(param, ts);
+  result := av_ts_make_string(param, ts);
 end;
 
 (**

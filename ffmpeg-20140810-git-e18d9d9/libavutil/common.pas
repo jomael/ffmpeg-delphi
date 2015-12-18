@@ -30,3 +30,5 @@ function MKTAG(a, b, c, d: AnsiChar): integer; inline;
 
 function MKBETAG(a, b, c, d: AnsiChar): integer; inline;
 
+function FFMIN(a,b : integer): integer; inline;
+

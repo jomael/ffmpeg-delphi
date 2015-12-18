@@ -191,17 +191,16 @@ type
   );
 
 
+
+
+
 (**
  * The libswresample context. Unlike libavcodec and libavformat, this structure
  * is opaque. This means that if you would like to set options, you must use
  * the @ref avoptions API and cannot directly set values to members of the
  * structure.
  *)
- type
-  PPSwrContext= ^PSwrContext;
-  PSwrContext = ^TSwrContext;
-  TSwrContext = record
-  end;
+{$INCLUDE swresample_internal.pas}
 
 (**
  * Get the AVClass for SwrContext. It can be used in combination with
@@ -282,7 +281,7 @@ function swr_alloc_set_opts(s: PSwrContext;
  *
  * @param[in] s a pointer to a pointer to Swr context
  *)
-procedure swr_free(s: PPSwrContext);
+procedure swr_free(var s: PSwrContext);
   cdecl; external LIB_SWRESAMPLE; (* verified: mail@freehand.com.ua, 2014-09-08: + *)
 
 
@@ -325,7 +324,7 @@ procedure swr_close(s: PSwrContext);
  * @return number of samples output per channel, negative value on error
  *)
 function swr_convert(s: PSwrContext; var out_: PByte; out_count: integer;
-                    in_:  PByte; in_count: integer): integer;
+                    var in_:  PByte; in_count: integer): integer;
   cdecl; external LIB_SWRESAMPLE; (* verified: mail@freehand.com.ua, 2014-09-08: + *)
 
 (**
