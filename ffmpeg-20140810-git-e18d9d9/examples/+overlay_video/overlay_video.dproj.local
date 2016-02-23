@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.307,C:\!Projects\ffmpeg-delphi\trunk\ffmpeg-20140810-git-e18d9d9\doc\examples\+overlay_video\overlay_video.dproj=C:\!Projects\ffmpeg-delphi\trunk\ffmpeg-20140810-git-e18d9d9\doc\examples\+overlay_video\filtering_video.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.647,C:\Users\mail_000\Documents\RAD Studio\Projects\Project1.dproj=C:\Users\mail_000\Desktop\ffmbc\ffmbc\version\Project1.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.534,C:\!Projects\ffmpeg-delphi\trunk\ffmpeg-20140810-git-e18d9d9\doc\examples\filtering_video\filtering_video.dproj=C:\!Projects\ffmpeg-delphi\trunk\ffmpeg-20140810-git-e18d9d9\doc\examples\filtering_video\Project1.dproj</Transaction>
+  </Transactions>
+</BorlandProject>
