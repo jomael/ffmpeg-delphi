@@ -1547,6 +1547,7 @@ type
   PAVHWAccel = ^TAVHWAccel;
 
   PAVCodecContext = ^TAVCodecContext;
+  PPAVCodec = ^PAVCodec;
   PAVCodec = ^TAVCodec;
 
   PPAVFrame = ^PAVFrame;

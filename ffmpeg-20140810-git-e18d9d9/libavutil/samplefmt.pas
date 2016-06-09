@@ -171,7 +171,7 @@ function av_sample_fmt_is_planar(sample_fmt: TAVSampleFormat): integer;
  * @param align         buffer size alignment (0 = default, 1 = no alignment)
  * @return              required buffer size, or negative error code on failure
  *)
-function av_samples_get_buffer_size(linesize: Integer; nb_channels: integer; nb_samples: integer;
+function av_samples_get_buffer_size(linesize: PInteger; nb_channels: integer; nb_samples: integer;
                                     sample_fmt: TAVSampleFormat; align: integer): integer;
   cdecl; external LIB_AVUTIL;
 
