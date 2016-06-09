@@ -464,6 +464,23 @@ begin
 end;
 
 (* libavutil/error.h *)
+function AVERROR(err: integer): integer; // Note: see avutil.pas
+begin
+{$IF EDOM > 0}
+  result := -err;
+{$ELSE}
+  result := -err;
+{$IFEND}
+end;
+
+function AVUNERROR(err: integer): integer; // Note: see avutil.pas
+begin
+{$IF EDOM > 0}
+  result := -err;
+{$ELSE}
+  result := -err;
+{$IFEND}
+end;
 
 function FFERRTAG(a, b, c, d: AnsiChar): integer; inline;
 begin

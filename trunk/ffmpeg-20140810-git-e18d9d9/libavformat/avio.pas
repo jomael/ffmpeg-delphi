@@ -218,7 +218,7 @@ function avio_alloc_context(buffer: PAnsiChar;
 		  
 procedure avio_w8(s: PAVIOContext; b: integer);
   cdecl; external LIB_AVFORMAT;
-procedure avio_write(s: PAVIOContext; buf: PAnsiChar; size: integer);
+procedure avio_write(s: PAVIOContext; buf: PByte; size: integer);
   cdecl; external LIB_AVFORMAT;
 procedure avio_wl64(s: PAVIOContext; val: int64);
   cdecl; external LIB_AVFORMAT;

@@ -1016,7 +1016,7 @@ type
 
 {$INCLUDE avcodec_filter.pas}
 
-
+{$INCLUDE internal.pas}
 
 (**
  * Get the number of elements in a NULL-terminated array of AVFilterPads (e.g.

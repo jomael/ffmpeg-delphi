@@ -76,6 +76,9 @@ const
 #endif
 *)
 
+function AVERROR(err: integer): integer; // Note: see avutil.pas
+function AVUNERROR(err: integer): integer; // Note: see avutil.pas
+
 function FFERRTAG(a, b, c, d: AnsiChar): integer; inline;  // Note: see avutil.pas
 
 

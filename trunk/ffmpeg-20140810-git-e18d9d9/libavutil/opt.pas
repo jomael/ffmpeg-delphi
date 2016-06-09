@@ -269,6 +269,7 @@ const
  * AVOption
  *)
 type
+  PPAVOption = ^PAVOption;
   PAVOption = ^TAVOption;
   TAVOption = record
 	  name  : PAnsiChar;

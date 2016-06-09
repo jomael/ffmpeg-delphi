@@ -96,7 +96,7 @@ Function av_image_fill_pointers(data: PArray4PByte; pix_fmt: TAVPixelFormat; hei
  * @return the size in bytes required for the image buffer, a negative
  * error code in case of failure
  *)
-Function av_image_alloc(pointers: PArray4PByte; linesizes: TArray4Integer;
+Function av_image_alloc(pointers: PArray4PByte; linesizes: PInteger {TArray4Integer};
                    w, h : integer; pix_fmt : TAVPixelFormat; align : integer): integer;
   cdecl; external LIB_AVUTIL;
 (**
@@ -121,8 +121,8 @@ Procedure av_image_copy_plane(var dst: PByte; dst_linesize : integer;
  * @param dst_linesizes linesizes for the image in dst_data
  * @param src_linesizes linesizes for the image in src_data
  *)
-Procedure av_image_copy(dst_data: PArray4PByte; dst_linesizes: TArray4Integer;
-                   const src_data: PArray4PByte; src_linesizes: TArray4Integer;
+Procedure av_image_copy(dst_data: PArray4PByte; dst_linesizes: PInteger;
+                   const src_data: PArray4PByte; src_linesizes: PInteger;
                    pix_fmt: TAVPixelFormat; width, height : integer);
   cdecl; external LIB_AVUTIL;
 

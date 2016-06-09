@@ -531,9 +531,11 @@ type
   PAVPacketList = ^TAVPacketList;
   PPAVInputFormat = ^PAVInputFormat;
   PAVInputFormat = ^TAVInputFormat;
+  PPAVIndexEntry = ^PAVIndexEntry;
   PAVIndexEntry = ^TAVIndexEntry;
-  PPAVStream = ^PAVStream;
+
   PAVStream = ^TAVStream;
+  PPAVStream = {array of PAVStream;} ^PAVStream;
   PPAVProgram = ^PAVProgram;
   PAVProgram = ^TAVProgram;
   PPAVChapter = ^PAVChapter;
@@ -543,6 +545,8 @@ type
   PPAVCodecTag = ^PAVCodecTag;
   PAVCodecTag = ^TAVCodecTag;
   TAVCodecTag = record
+    id  : TAVCodecID;
+    tag : cardinal;
   end;
 
   PAVDeviceInfoList = ^TAVDeviceInfoList;
@@ -1296,7 +1300,7 @@ type
      *
      * Freed by libavformat in avformat_free_context().
      *)
-	  streams : PPAVStream;    //array [0..MAX_STREAMS - 1] of PAVStream;
+	  streams : PPAVStream;
 
     (**
      * input or output filename
@@ -2171,7 +2175,7 @@ function av_find_best_stream(ic: PAVFormatContext;
                         type_: TAVMediaType;
 						            wanted_stream_nb: integer;
                         related_stream: integer;
-						            var decoder_ret: PAVCodec;
+						            decoder_ret: PAVCodec;
 						            flags: integer): integer;
   cdecl; external LIB_AVFORMAT;
 
